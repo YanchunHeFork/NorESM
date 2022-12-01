@@ -11,11 +11,16 @@ Short-term archiving
 ^^^^^^^^^^^^^^^^^^^^
 Short-term archiving is a phase of a NorESM model run where the generated output data is moved from ``$USERWORK/noresm/$CASE/run`` into a specific folder structure under ``$USERWORK/archive/$CASE``. Short-term archiving environment variables are set in the ``env_mach_specific.xml`` file and by default, short-term archiving is enabled. However, in the ``env_run.xml`` file it is possible to change short-term archiving settings by modifying several variables which control the behavior of short-term archiving:
 
-``DOUT_S``: If TRUE, short term archiving will be turned on.
+.. glossary::
 
-``DOUT_S_ROOT``: Root directory for short term archiving. This directory must be visible to compute nodes.
+  DOUT_S
+    If TRUE, short term archiving will be turned on.
 
-``DOUT_S_SAVE_INT_REST_FILES``: If TRUE, perform short term archiving on all interim restart files, not just those at the end of the run. By default, this value is FALSE. 
+  DOUT_S_ROOT
+    Root directory for short term archiving. This directory must be visible to compute nodes.
+
+  DOUT_S_SAVE_INT_REST_FILES
+    If TRUE, perform short term archiving on all interim restart files, not just those at the end of the run. By default, this value is FALSE. 
 
 It is also possible to move output data from ``$USERWORK/noresm/$CASE/run`` into ``$USERWORK/archive/$CASE`` without starting a new model run, e.g if the model run is not successful and stops before it is completed, the short-term archiving will not be executed. To launch only the short-term archiving script; go to the case folder and on the command line write:
 
@@ -24,6 +29,8 @@ On FRAM:
 
 On BETZY:
 ``sbatch --time 14:59:00 -p preproc --account <project> case.st_archive``
+
+The memory in case.st_archive set to 120 GB. Normally, the archiving should not stop or crash but, it can happen with large file sizes. If you encounter problems with the archiving, please check the ``/cluster/work/users/$USER/archive/<case>/archive.log.*`` log file and look for completion. If the archiving did not finish completely, please rerun the script ``case.st_archive`` in the ``<case>`` folder and check the log file to see why the archiving failed. Usually, the memory and/or walltime used for archiving need to be increased; which can be modified in case.st_archive. If you notice any data corruption, please contact us.
 
 Medium-term archiving
 ^^^^^^^^^^^^^^^^^^^^^
