@@ -1,3 +1,4 @@
+:orphan:
 .. _mosart_standard_out:
 
 MOSART standard set-up output

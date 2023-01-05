@@ -1,3 +1,4 @@
+:orphan:
 .. _output:
 
 Output and standard results

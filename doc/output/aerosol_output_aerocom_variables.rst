@@ -1,3 +1,4 @@
+:orphan:
 .. _aerosol_output_aerocom_variables:
 
 AEROCOM extra output
